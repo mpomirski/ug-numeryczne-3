@@ -7,10 +7,10 @@ from typing import Callable
 
 
 class Integral:
-    def __init__(self, f: Callable[[np.float64], np.float64], left: float, right: float) -> None:
+    def __init__(self, f: Callable[[np.float64], np.float64], left: np.float64, right: np.float64) -> None:
         self.f: Callable[[np.float64], np.float64] = f
-        self.left: float = left
-        self.right: float = right
+        self.left: np.float64 = left
+        self.right: np.float64 = right
 
     def calculate(self, x: np.float64) -> np.float64:
         return self.f(x)
