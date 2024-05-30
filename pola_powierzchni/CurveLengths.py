@@ -26,14 +26,25 @@ def perimeter_of_ellipse(a: np.float64, b: np.float64, steps: np.int32) -> tuple
     CSI: np.float64 = 4 * integral.CSIMethod(steps)
     return rect, trapezoid, simpson, CSI
 
+def sin_length(steps: np.int32) -> tuple[np.float64, np.float64, np.float64, np.float64]:
+    def f(x: np.float64) -> np.float64:
+        return np.sqrt(1 + np.cos(x)**2)
+    
+    integral: Integral = Integral(f, np.float64(0), np.float64(np.pi) * 2)
+    rect: np.float64 = integral.rectangleMethod(steps)
+    trapezoid: np.float64 = integral.trapezoidMethod(steps)
+    simpson: np.float64 = integral.simpsonMethod(steps)
+    CSI: np.float64 = integral.CSIMethod(steps)
+    return rect, trapezoid, simpson, CSI
+
 def main() -> None:
     steps: np.int32 = np.int32(10000)
     rect, trapezoid, simpson, CSI = area_of_unit_circle(steps)
     print("Area of unit circle:")
-    print(f"Rectangle method delta:\t{np.abs(rect - np.pi):.10f}")
-    print(f"Trapezoid method delta:\t{np.abs(trapezoid - np.pi):.10f}")
-    print(f"Simpson method delta:\t{np.abs(simpson - np.pi):.10f}")
-    print(f"CSI method delta:\t{np.abs(CSI - np.pi):.10f}")
+    print(f"Rectangle method delta:\t{np.abs(rect - np.pi):.15f}")
+    print(f"Trapezoid method delta:\t{np.abs(trapezoid - np.pi):.15f}")
+    print(f"Simpson method delta:\t{np.abs(simpson - np.pi):.15f}")
+    print(f"CSI method delta:\t{np.abs(CSI - np.pi):.15f}")
 
     print("\nPerimeter of ellipse:")
     rect, trapezoid, simpson, CSI = perimeter_of_ellipse(np.float64(10), np.float64(10), steps)
@@ -41,6 +52,14 @@ def main() -> None:
     print(f"Trapezoid method delta:\t{np.abs(trapezoid - np.pi * 20):.15f}")
     print(f"Simpson method delta:\t{np.abs(simpson - np.pi * 20):.15f}")
     print(f"CSI method delta:\t{np.abs(CSI - np.pi * 20):.15f}")
+
+    print("\nLength of sin from 0 to 2pi:")
+    rect, trapezoid, simpson, CSI = sin_length(steps)
+    sin_length_wolfram: np.float64 = np.float64(7.6403955780554240358095241643428865838199352292945494421609933134) # From wolfram alpha
+    print(f"Rectangle method delta:\t{np.abs(rect - sin_length_wolfram):.15f}")
+    print(f"Trapezoid method delta:\t{np.abs(trapezoid - sin_length_wolfram):.15f}")
+    print(f"Simpson method delta:\t{np.abs(simpson - sin_length_wolfram):.15f}")
+    print(f"CSI method delta:\t{np.abs(CSI - sin_length_wolfram):.15f}")
 
 if __name__ == "__main__":
     main()

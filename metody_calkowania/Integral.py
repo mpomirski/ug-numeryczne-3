@@ -147,7 +147,7 @@ def main() -> None:
 
     def f(x: np.float64) -> np.float64:
         return eval(function)
-    integral = Integral(f, -4, +4)
+    integral = Integral(f, np.float64(-4), np.float64(+4))
 
     plt.figure(figsize=(12, 8))
     plt.subplot(2, 2, 1)
