@@ -1,6 +1,5 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from typing import Callable
 import sys
 import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir)))

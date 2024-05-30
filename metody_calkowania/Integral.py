@@ -2,7 +2,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.lines import Line2D
 from scipy.interpolate import lagrange, CubicSpline
-from numpy.polynomial.polynomial import Polynomial
 from typing import Callable
 
 

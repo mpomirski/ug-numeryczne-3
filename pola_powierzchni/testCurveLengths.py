@@ -2,7 +2,6 @@
 import unittest
 from CurveLengths import area_of_unit_circle, perimeter_of_ellipse
 import numpy as np
-from typing import Callable
 
 class TestCurveLengths(unittest.TestCase):
     def setUp(self) -> None:
