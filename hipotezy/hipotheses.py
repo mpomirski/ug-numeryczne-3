@@ -5,7 +5,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.
 from metody_calkowania.Integral import Integral
 
 def compare_methods(steps):
-    f = lambda x: x**2  # Definicja funkcji
+    f = lambda x: x**2  
     integral = Integral(f, 0, 1)
     exact_value = 1 / 3
 
@@ -23,14 +23,12 @@ def main():
     steps_range = [10, 50, 100, 500, 1000, 10000]
     errors_by_steps = {step: compare_methods(step) for step in steps_range}
 
-    # Print errors for each method and number of steps
     for step, errors in errors_by_steps.items():
         print(f"Steps: {step}")
         for method, error in errors.items():
             print(f"  {method}: Error = {error:}")
         print()
 
-    # Verify hypotheses
     print("Verifying hypotheses:")
     print("H1: Trapezoid more accurate than Rectangle?")
     for step in steps_range:
