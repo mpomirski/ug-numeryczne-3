@@ -6,7 +6,7 @@ from metody_calkowania.Integral import Integral
 import numpy as np
 
 def circumference_of_unit_circle(steps: np.int32) -> tuple[float, float, float, float]:
-    f = lambda t: 1  
+    f = lambda t: 1
     integral = Integral(f, 0, 2 * np.pi)
 
     rect = integral.rectangleMethod(steps)
@@ -16,7 +16,7 @@ def circumference_of_unit_circle(steps: np.int32) -> tuple[float, float, float, 
     try:
         CSI = integral.CSIMethod(steps)
     except ZeroDivisionError:
-        CSI = simpson
+        CSI = simpson 
 
     return rect, trapezoid, simpson, CSI
 
